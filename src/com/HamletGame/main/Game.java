@@ -34,6 +34,17 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
+	public void startGame()
+	{
+		long lastLoopTime = System.nanoTime();
+		
+		while(running)
+		{
+			
+		}
+	}
+	
+	
 	public void run()
 	{
 		
