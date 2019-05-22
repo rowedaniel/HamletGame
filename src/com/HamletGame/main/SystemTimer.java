@@ -2,7 +2,13 @@ package com.HamletGame.main;
 
 public class SystemTimer {
 
-	private final int TARGET_FPS = 60; // 60 FPS
-	private final long TARGET_TIME = 1000000000 / TARGET_FPS;
-
+	private static final int TARGET_FPS = 60; // 60 FPS
+	
+	public static long getTime() {
+		return System.nanoTime() / 1000000;
+	}
+	
+	public static long getTargetTime() {
+		return (long) 1000 / TARGET_FPS;
+	}
 }
