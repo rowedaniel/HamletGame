@@ -18,11 +18,12 @@ public class Game extends Canvas implements Runnable{
 	
 	public Game()
 	{
-		new Window(WIDTH, HEIGHT, "gamemem", this);
-		
 		handler = new Handler();
+		this.addKeyListener(new KeyInput(handler));
 		
-		handler.addObject(new Player(10,10,ID.Player));
+		new Window(WIDTH, HEIGHT, "gamemem", this);
+				
+		handler.addObject(new Player(WIDTH/2,HEIGHT/2,ID.Player));
 		
 	}
 	

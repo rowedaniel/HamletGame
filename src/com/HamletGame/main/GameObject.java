@@ -23,6 +23,8 @@ public abstract class GameObject {
 	
 	public abstract void draw(Graphics g);
 	
+	public abstract void updateInput(int key, boolean state);
+	
 	public void setX(int x) {
 		this.x = x;
 	}
