@@ -24,8 +24,7 @@ public class Player extends GameObject{
 		 } else if(RIGHT) {
 			 setAnimationState(2);
 			 setVelX(10);
-		 } else if(!(UP || DOWN)) {
-			 setAnimationState(0);
+		 } else {
 			 setVelX(0);
 		 }
 		 if(UP) {
@@ -34,9 +33,12 @@ public class Player extends GameObject{
 		 } else if(DOWN) {
 			 setAnimationState(4);
 			 setVelY(10);
-		 } else if(!(LEFT || RIGHT)) {
-			 setAnimationState(0);
+		 } else {
 			 setVelY(0);
+		 }
+		 
+		 if(!(UP || DOWN || LEFT || RIGHT)) {
+			 setAnimationState(0);
 		 }
 	}
 	
