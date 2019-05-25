@@ -1,9 +1,12 @@
 package com.HamletGame.main;
 
 import java.awt.Canvas;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import javax.swing.ImageIcon;
 
 public class Game extends Canvas implements Runnable{
 	
@@ -12,6 +15,8 @@ public class Game extends Canvas implements Runnable{
 	public static final int WIDTH = 800, HEIGHT = WIDTH * 10000 / 16180; // aspect ratio must be golden
 	
 	private Handler handler;
+	private ImageIcon img;
+
 	
 	private Thread thread;
 	private boolean running = false;
@@ -24,6 +29,9 @@ public class Game extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "gamemem", this);
 				
 		handler.addObject(new Player(WIDTH/2,HEIGHT/2,ID.Player));
+		
+		ImageIcon img = new ImageIcon("/pictures/Floor0.png");
+
 		
 	}
 	
@@ -57,7 +65,7 @@ public class Game extends Canvas implements Runnable{
 			render(delta);
 			
 			try {
-				Thread.sleep(prevTime + SystemTimer.getTargetTime() - SystemTimer.getTime());
+				Thread.sleep(Math.max(0,prevTime + SystemTimer.getTargetTime() - SystemTimer.getTime()));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
