@@ -1,8 +1,11 @@
 package com.HamletGame.main;
 
+import java.awt.BorderLayout;
 import java.awt.Canvas;
-
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
@@ -10,22 +13,52 @@ public class Window extends Canvas{
 
 	private static final long serialVersionUID = 1031273228876517109L;
 	
-	public Window(int width, int height, String title, Game game)
+	private JFrame frame;
+	private BufferedImage image;
+	private Canvas canvas;
+	private BufferStrategy bs;
+	private Graphics g;
+	
+	
+	public Window(Game game)
 	{
-		// very much work in progress, improve later
-		JFrame container = new JFrame(title);
+		// TODO: very much work in progress, improve later
 		
-		container.setPreferredSize(new Dimension(width, height));
-		container.setMaximumSize(new Dimension(width, height));
-		container.setMinimumSize(new Dimension(width, height));
+		image = new BufferedImage(game.getWidth(), game.getHeight(), BufferedImage.TYPE_INT_RGB);
 		
-		container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		container.setResizable(false); // make this true later
-		container.setLocationRelativeTo(null);
-		container.add(game);
-		container.setVisible(true);
-		game.start();
+		canvas = new Canvas();
+		Dimension s = new Dimension((int)(game.getWidth()*game.getScale()), (int)(game.getHeight()*game.getScale()));
+		canvas.setPreferredSize(s);
+		canvas.setMaximumSize(s);
+		canvas.setMinimumSize(s);
+		
+		frame = new JFrame(game.getTitle());
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(new BorderLayout());
+		frame.add(canvas, BorderLayout.CENTER);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false); // make this true later
+		frame.setVisible(true);
 
+		canvas.createBufferStrategy(3);
+		bs = canvas.getBufferStrategy();
+		g = bs.getDrawGraphics();
+		
+	}
+	
+	public void update() {
+		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
+		g.dispose();
+		bs.show();
+	}
+	
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public Canvas getCanvas() {
+		return canvas;
 	}
 	
 }

@@ -2,41 +2,34 @@ package com.HamletGame.main;
 
 import java.awt.Canvas;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
-
-import javax.swing.ImageIcon;
 
 public class Game extends Canvas implements Runnable{
 	
 	private static final long serialVersionUID = 8018679086977040689L;
 	
-	public static final int WIDTH = 800, HEIGHT = WIDTH * 10000 / 16180; // aspect ratio must be golden
+	private int Width = 800, Height = Width * 10000 / 16180; // aspect ratio must be golden
+	private double scale = 1f;
+	private String title = "gamememe";
 	
-	private Handler handler;
-	private ImageIcon img;
-
+	//private Handler handler;
+	private Window window;
 	
 	private Thread thread;
 	private boolean running = false;
 	
 	public Game()
 	{
-		handler = new Handler();
-		this.addKeyListener(new KeyInput(handler));
-		
-		new Window(WIDTH, HEIGHT, "gamemem", this);
-				
-		handler.addObject(new Player(WIDTH/2,HEIGHT/2,ID.Player));
-		
-		ImageIcon img = new ImageIcon("/pictures/Floor0.png");
-
-		
+		setIgnoreRepaint(true);
 	}
 	
 	public synchronized void start()
 	{
+		//handler = new Handler();
+		//this.addKeyListener(new KeyInput(handler));			
+		//handler.addObject(new Player(WIDTH/2,HEIGHT/2,ID.Player));
+		
+		window = new Window(this);
+		
 		thread = new Thread(this);
 		thread.start();
 		running = true;
@@ -58,10 +51,9 @@ public class Game extends Canvas implements Runnable{
 		
 		while(running)
 		{
-			long delta = prevTime - (prevTime = SystemTimer.getTime());
+			long delta = (prevTime = SystemTimer.getTime() - prevTime);
 			
-			
-			logic(delta);
+			//logic(delta);
 			render(delta);
 			
 			try {
@@ -76,31 +68,60 @@ public class Game extends Canvas implements Runnable{
 	
 	public void logic(long delta)
 	{
-		handler.logic();
+		//handler.logic();
 	}
 	
 	public void render(long delta)
 	{
-		BufferStrategy bs = this.getBufferStrategy();
-		if(bs == null)
-		{
-			this.createBufferStrategy(3);
-			return;
-		}
-		
-		Graphics g = bs.getDrawGraphics();
-		
-		g.setColor(Color.black);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
-		
-		handler.render(g);
-		
-		g.dispose();
-		bs.show();
+		window.update();
+		//handler.render(window.getGraphics());
 	}
 	
+
+	public int getWidth() {
+		return Width;
+	}
+
+	public void setWidth(int Width) {
+		this.Width = Width;
+	}
+
+	public int getHeight() {
+		return Height;
+	}
+
+	public void setHeight(int Height) {
+		this.Height = Height;
+	}
+
+	public double getScale() {
+		return scale;
+	}
+
+	public void setScale(double scale) {
+		this.scale = scale;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public Window getWindow() {
+		return window;
+	}
+	
+	
+	
+	
+
 	public static void main(String[] args)
 	{
-		new Game();
+		Game g = new Game();
+		g.start();
 	}
+	
 }
