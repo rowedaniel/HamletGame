@@ -84,9 +84,8 @@ public class Game extends Canvas implements Runnable{
 	
 	public void render(long delta)
 	{
-		renderer.clear();
+		renderer.update(handler.getObjectByID(ID.Player));
 		handler.render(renderer);
-		// TODO: render game		
 		window.update();
 	}
 	

@@ -2,6 +2,7 @@ package com.HamletGame.main;
 
 import java.awt.image.DataBufferInt;
 
+import com.HamletGame.main.entities.GameObject;
 import com.HamletGame.main.graphics.Image;
 import com.HamletGame.main.graphics.ImageTile;
 
@@ -9,12 +10,13 @@ public class Renderer {
 
 	private int pW, pH;
 	private int[] p;
+	private Camera camera;
 	
 	public Renderer(Game g) {
 		pW = g.getWidth();
 		pH = g.getHeight();
 		p = ((DataBufferInt)g.getWindow().getImage().getRaster().getDataBuffer()).getData();
-		
+		camera = new Camera(0,0);
 	}
 	
 	
@@ -22,6 +24,11 @@ public class Renderer {
 		for(int i = 0; i < p.length; i++) {
 			p[i] = 0xff000000;
 		}
+	}
+	
+	public void update(GameObject follow) {
+		clear();
+		camera.follow(follow);
 	}
 	
 	private void setPixel(int x, int y, int value) {
@@ -41,6 +48,9 @@ public class Renderer {
 	
 	
 	public void drawImage(Image image, int offX, int offY) {
+
+		offX -= camera.getX();
+		offY -= camera.getY();
 		
 		if(offX > pW) {return;}
 		if(offY > pH) {return;}
@@ -62,6 +72,10 @@ public class Renderer {
 	
 	
 	public void drawImageTile(ImageTile image, int offX, int offY, int tileX, int tileY) {
+		
+		offX -= camera.getX();
+		offY -= camera.getY();
+		
 		if(offX > pW) {return;}
 		if(offY > pH) {return;}
 		if(offX < -image.getTileW()) {return;}

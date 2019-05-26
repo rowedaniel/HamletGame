@@ -26,6 +26,16 @@ public class Handler {
 		}
 	}
 	
+	public GameObject getObjectByID(ID id) {
+		for(int i = 0; i < entities.size(); i++) {
+			GameObject o = entities.get(i);
+			if(o.getID()==id) {
+				return o;
+			}
+		}
+		return null;
+	}
+	
 	public void addObject(GameObject o)
 	{
 		this.entities.add(o);
