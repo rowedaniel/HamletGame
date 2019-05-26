@@ -2,16 +2,18 @@ package com.HamletGame.main;
 
 import java.util.LinkedList;
 
+import com.HamletGame.main.entities.GameObject;
+
 public class Handler {
 	
 	LinkedList<GameObject> entities = new LinkedList<GameObject>();
 	
-	public void logic()
+	public void logic(long delta)
 	{
 		for(int i = 0; i < entities.size(); i++) {
 			GameObject o = entities.get(i);
 			
-			o.update();
+			o.update(delta);
 		}
 	}
 	

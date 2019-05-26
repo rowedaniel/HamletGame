@@ -2,18 +2,22 @@ package com.HamletGame.main;
 
 import java.awt.Canvas;
 
+import com.HamletGame.main.entities.Player;
+import com.HamletGame.main.entities.Tile;
+
 
 public class Game extends Canvas implements Runnable{
 	
 	private static final long serialVersionUID = 8018679086977040689L;
 	
-	private int Width = 800, Height = Width * 10000 / 16180; // aspect ratio must be golden
-	private double scale = 1f;
+	private int Width = 256, Height = Width * 10000 / 16180; // aspect ratio must be golden
+	private double scale = 4f;
 	private String title = "gamememe";
 	
 	private Handler handler;
 	private Window window;
 	private Renderer renderer;
+	private KeyInput keyInput;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -26,11 +30,15 @@ public class Game extends Canvas implements Runnable{
 	public synchronized void start()
 	{
 		handler = new Handler();
-		this.addKeyListener(new KeyInput(handler));	
+		// build room
+		for(int x = 0; x < 8; x++) {
+			handler.addObject(new Tile(x*32, 0, 0, "/images/Wall.png", ID.GenericTile));
+		}
 		handler.addObject(new Player(Width/2,Height/2,ID.Player));
-		
+
 		window = new Window(this);
 		renderer = new Renderer(this);
+		keyInput = new KeyInput(this);
 		
 		thread = new Thread(this);
 		thread.start();
@@ -71,7 +79,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public void logic(long delta)
 	{
-		handler.logic();
+		handler.logic(delta);
 	}
 	
 	public void render(long delta)
@@ -119,6 +127,10 @@ public class Game extends Canvas implements Runnable{
 		return window;
 	}
 	
+	public Handler getHandler() {
+		return handler;
+	}
+
 	
 	
 	

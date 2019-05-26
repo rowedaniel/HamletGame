@@ -49,7 +49,6 @@ public class Window extends Canvas{
 	
 	public void update() {
 		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
-		g.dispose();
 		bs.show();
 	}
 	

@@ -1,11 +1,18 @@
-package com.HamletGame.main;
+package com.HamletGame.main.entities;
+
+import com.HamletGame.main.ID;
+import com.HamletGame.main.Renderer;
+import com.HamletGame.main.graphics.Image;
 
 public abstract class GameObject {
 
 	protected ID id;
 	
 	protected int x, y;
+	protected double extraX, extraY;
 	protected int xvel, yvel;
+	
+	protected Image image;
 	
 	public GameObject(int x, int y, ID id)
 	{
@@ -15,9 +22,12 @@ public abstract class GameObject {
 		
 		this.xvel = 0;
 		this.yvel = 0;
+		
+		this.extraX = 0.0f;
+		this.extraY = 0.0f;
 	}
 	
-	public abstract void update();
+	public abstract void update(long delta);
 	
 	public abstract void draw(Renderer r);
 	

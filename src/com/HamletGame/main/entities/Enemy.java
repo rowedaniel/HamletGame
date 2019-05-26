@@ -1,4 +1,4 @@
-package com.HamletGame.main;
+package com.HamletGame.main.entities;
 
 // basic enemy code. TODO implement later
 
