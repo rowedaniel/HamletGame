@@ -11,12 +11,13 @@ public class Game extends Canvas implements Runnable{
 	private double scale = 1f;
 	private String title = "gamememe";
 	
-	//private Handler handler;
+	private Handler handler;
 	private Window window;
+	private Renderer renderer;
 	
 	private Thread thread;
 	private boolean running = false;
-	
+		
 	public Game()
 	{
 		setIgnoreRepaint(true);
@@ -24,15 +25,17 @@ public class Game extends Canvas implements Runnable{
 	
 	public synchronized void start()
 	{
-		//handler = new Handler();
-		//this.addKeyListener(new KeyInput(handler));			
-		//handler.addObject(new Player(WIDTH/2,HEIGHT/2,ID.Player));
+		handler = new Handler();
+		this.addKeyListener(new KeyInput(handler));	
+		handler.addObject(new Player(Width/2,Height/2,ID.Player));
 		
 		window = new Window(this);
+		renderer = new Renderer(this);
 		
 		thread = new Thread(this);
 		thread.start();
 		running = true;
+	
 	}
 	
 	public synchronized void stop()
@@ -53,7 +56,7 @@ public class Game extends Canvas implements Runnable{
 		{
 			long delta = (prevTime = SystemTimer.getTime() - prevTime);
 			
-			//logic(delta);
+			logic(delta);
 			render(delta);
 			
 			try {
@@ -68,13 +71,15 @@ public class Game extends Canvas implements Runnable{
 	
 	public void logic(long delta)
 	{
-		//handler.logic();
+		handler.logic();
 	}
 	
 	public void render(long delta)
 	{
+		renderer.clear();
+		handler.render(renderer);
+		// TODO: render game		
 		window.update();
-		//handler.render(window.getGraphics());
 	}
 	
 

@@ -1,7 +1,5 @@
 package com.HamletGame.main;
 
-import java.awt.Graphics;
-
 public abstract class GameObject {
 
 	protected ID id;
@@ -21,7 +19,7 @@ public abstract class GameObject {
 	
 	public abstract void update();
 	
-	public abstract void draw(Graphics g);
+	public abstract void draw(Renderer r);
 	
 	public abstract void updateInput(int key, boolean state);
 	

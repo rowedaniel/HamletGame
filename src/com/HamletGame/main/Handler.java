@@ -1,6 +1,5 @@
 package com.HamletGame.main;
 
-import java.awt.Graphics;
 import java.util.LinkedList;
 
 public class Handler {
@@ -16,12 +15,12 @@ public class Handler {
 		}
 	}
 	
-	public void render(Graphics g)
+	public void render(Renderer r)
 	{
 		for(int i = 0; i < entities.size(); i++) {
 			GameObject o = entities.get(i);
 			
-			o.draw(g);
+			o.draw(r);
 		}
 	}
 	

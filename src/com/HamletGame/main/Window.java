@@ -41,7 +41,7 @@ public class Window extends Canvas{
 		frame.setResizable(false); // make this true later
 		frame.setVisible(true);
 
-		canvas.createBufferStrategy(3);
+		canvas.createBufferStrategy(2);
 		bs = canvas.getBufferStrategy();
 		g = bs.getDrawGraphics();
 		

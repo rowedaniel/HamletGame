@@ -1,18 +1,17 @@
 package com.HamletGame.main;
 
-import java.awt.Color;
-
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+
+import com.HamletGame.main.graphics.Image;
 
 public class Player extends GameObject{
 
 	private boolean LEFT, RIGHT, UP, DOWN;
-	private Color color;
+	private Image image;
 	
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		color = Color.white;
+		image = new Image("/images/Floor0.png");
 	}
 	
 	public void update() {
@@ -44,16 +43,10 @@ public class Player extends GameObject{
 	}
 	
 	public void setAnimationState(int state) {
-		if(state == 0) { color = Color.white; }
-		else if(state == 1) { color = Color.blue; }
-		else if(state == 2) { color = Color.red; }
-		else if(state == 3) { color = Color.green; }
-		else if(state == 4) { color = Color.yellow; }
 	}
 	
-	public void draw(Graphics g) {
-		g.setColor(color);
-		g.fillRect(x, y, 32, 32);
+	public void draw(Renderer r) {
+		r.drawImage(image, x, y);
 	}
 
 	public void updateInput(int key, boolean state) {

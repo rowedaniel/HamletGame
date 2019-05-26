@@ -13,14 +13,15 @@ public class KeyInput extends KeyAdapter{
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		
+		System.out.println(key);
+		/*
 		for(int i = 0; i < handler.entities.size(); i++) {
 			GameObject o = handler.entities.get(i);
 			
 			if(o.getID() == ID.Player) {
 				o.updateInput(key, true);
 			}
-		}
+		}*/
 	}
 	
 	public void keyReleased(KeyEvent e) {
