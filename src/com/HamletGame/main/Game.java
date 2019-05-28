@@ -32,7 +32,21 @@ public class Game extends Canvas implements Runnable{
 		handler = new Handler();
 		// build room
 		for(int x = 0; x < 8; x++) {
-			handler.addObject(new Tile(x*32, 0, 0, "/images/Wall.png", ID.GenericTile));
+			// top walls
+			handler.addObject(new Tile(x*32+64, 0, 0, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(x*32+64, 32, 0, "/images/WallBridge.png", ID.GenericTile));
+			// left walls
+			handler.addObject(new Tile(0, x*32+64, 1, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(32, x*32+64, 1, "/images/WallBridge.png", ID.GenericTile));
+			// bottom walls
+			handler.addObject(new Tile(x*32+64, 32*11, 2, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(x*32+64, 32*10, 2, "/images/WallBridge.png", ID.GenericTile));
+			// right walls
+			handler.addObject(new Tile(32*11, x*32+64, 3, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(32*10, x*32+64, 3, "/images/WallBridge.png", ID.GenericTile));
+			for(int y = 0; y < 8; y++) {
+				handler.addObject(new Tile(x*32+64, y*32+64, (x+y)%2, "/images/Floor.png", ID.GenericTile));
+			}
 		}
 		handler.addObject(new Player(Width/2,Height/2,ID.Player));
 
