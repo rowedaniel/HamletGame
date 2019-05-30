@@ -19,7 +19,7 @@ public class Player extends GameObject{
 	
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		image = new ImageTile("/images/Player.png", 32, 32);
+		image = new ImageTile("/com/HamletGame/main/graphics/Player.png", 32, 32);
 		animationX = 0;
 		animationY = 0;
 	}
@@ -63,6 +63,18 @@ public class Player extends GameObject{
 		 } else {
 			 setVelY(0);
 		 }
+       if(RIGHT && DOWN) {
+          setAnimationState(5);
+       }
+       if(LEFT && DOWN) {
+          setAnimationState(6);
+       }
+       if(RIGHT && UP) {
+          setAnimationState(7);
+       }
+       if(LEFT && UP) {
+          setAnimationState(8);
+       }
 		 if(!(LEFT || RIGHT || UP || DOWN)) {
 			 setAnimationState(0);
 		 }
@@ -78,7 +90,7 @@ public class Player extends GameObject{
 			}
 			
 		}
-		else if(state > 0 && state < 8) {
+		else if(state > 0 && state < 9) {
 			if(animationFactor == 0.0) {
 				animationFactor = 1.0;
 			}
