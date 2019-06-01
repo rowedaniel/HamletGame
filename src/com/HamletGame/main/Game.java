@@ -4,6 +4,7 @@ import java.awt.Canvas;
 
 import com.HamletGame.main.entities.AnimatedTile;
 import com.HamletGame.main.entities.Player;
+import com.HamletGame.main.entities.TextBox;
 import com.HamletGame.main.entities.Tile;
 
 
@@ -18,8 +19,6 @@ public class Game extends Canvas implements Runnable{
 	private Handler handler;
 	private Window window;
 	private Renderer renderer;
-	private KeyInput keyInput;
-	
 	private Thread thread;
 	private boolean running = false;
 		
@@ -78,10 +77,12 @@ public class Game extends Canvas implements Runnable{
 
 		
 		handler.addObject(new Player(194,194,ID.Player));
+		
+		handler.addObject(new TextBox(ID.TextBox));
 
 		window = new Window(this);
 		renderer = new Renderer(this);
-		keyInput = new KeyInput(this);
+		new KeyInput(this);
 		
 		thread = new Thread(this);
 		thread.start();

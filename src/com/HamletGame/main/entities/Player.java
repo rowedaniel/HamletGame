@@ -26,24 +26,10 @@ public class Player extends GameObject{
 	
 	@Override
 	public void update(long delta) {
-		x += xvel*(delta/1000000000*walkSpeed); // 10**-9 * xvel px/s
-		y += yvel*(delta/1000000000/walkSpeed);
-		extraX += xvel*(delta/1000000000.0*walkSpeed) - xvel*delta/1000000000*walkSpeed;
-		extraY += yvel*(delta/1000000000.0*walkSpeed) - yvel*delta/1000000000*walkSpeed;
-		x += (int)extraX;
-		y += (int)extraY;
-		extraX -= (int)extraX;
-		extraY -= (int)extraY;
-
-		// fake collision
-		x = Math.min(300,Math.max(48, x));
-		y = Math.min(300,Math.max(48, y));
-
 		
-		// update animation
-		animationX = (int)animationTime;
-		animationTime += ((double)delta*animationFactor*animationSpeed/1000000000.0);
-		animationTime %= 8;
+		updatepos(delta);
+		
+		updateanimation(delta);
 		
 		if(LEFT) {
 			setAnimationState(2);
@@ -96,6 +82,28 @@ public class Player extends GameObject{
 			}
 			animationY = state;
 		}
+	}
+
+	public void updatepos(long delta) {
+		x += xvel*(delta/1000000000*walkSpeed); // 10**-9 * xvel px/s
+		y += yvel*(delta/1000000000/walkSpeed);
+		extraX += xvel*(delta/1000000000.0*walkSpeed) - xvel*delta/1000000000*walkSpeed;
+		extraY += yvel*(delta/1000000000.0*walkSpeed) - yvel*delta/1000000000*walkSpeed;
+		x += (int)extraX;
+		y += (int)extraY;
+		extraX -= (int)extraX;
+		extraY -= (int)extraY;
+
+		// fake collision
+		x = Math.min(300,Math.max(48, x));
+		y = Math.min(300,Math.max(48, y));
+	}
+	
+	public void updateanimation(long delta) {
+		// update animation
+		animationX = (int)animationTime;
+		animationTime += ((double)delta*animationFactor*animationSpeed/1000000000.0);
+		animationTime %= 8;
 	}
 	
 	@Override
