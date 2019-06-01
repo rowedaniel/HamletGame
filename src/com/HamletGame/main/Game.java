@@ -2,6 +2,7 @@ package com.HamletGame.main;
 
 import java.awt.Canvas;
 
+import com.HamletGame.main.entities.AnimatedTile;
 import com.HamletGame.main.entities.Player;
 import com.HamletGame.main.entities.Tile;
 
@@ -69,6 +70,12 @@ public class Game extends Canvas implements Runnable{
 		handler.addObject(new Tile(256+96,256+64,3,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
 		handler.addObject(new Tile(256+64,256+64,3,"/com/HamletGame/main/graphics/WallBridgeCorner.png", ID.GenericTile));
 		
+		handler.addObject(new AnimatedTile(96,96,3,"/images/TileAnimationTest.png", ID.GenericTile));
+		handler.addObject(new AnimatedTile(128,96,3,"/images/TileAnimationTest.png", ID.GenericTile));
+		handler.addObject(new AnimatedTile(160,96,1,"/images/TileAnimationTest.png", ID.GenericTile));
+		handler.addObject(new AnimatedTile(192,96,1,"/images/TileAnimationTest.png", ID.GenericTile));
+		
+
 		
 		handler.addObject(new Player(194,194,ID.Player));
 

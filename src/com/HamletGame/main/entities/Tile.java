@@ -6,9 +6,9 @@ import com.HamletGame.main.graphics.ImageTile;
 
 public class Tile extends GameObject{
 	
-	private int animationX;
-	private int animationY;
-	private ImageTile image;
+	protected int animationX;
+	protected int animationY;
+	protected ImageTile image;
 
 	public Tile(int x, int y, int r, String imgpath, ID id) {
 		super(x, y, id);
