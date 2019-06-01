@@ -71,10 +71,12 @@ public class Renderer {
 	}
 	
 	
-	public void drawImageTile(ImageTile image, int offX, int offY, int tileX, int tileY) {
+	public void drawImageTile(ImageTile image, int offX, int offY, int tileX, int tileY, boolean overlay) {
 		
-		offX -= camera.getX();
-		offY -= camera.getY();
+		if(!overlay) {
+			offX -= camera.getX();
+			offY -= camera.getY();
+		}
 		
 		if(offX > pW) {return;}
 		if(offY > pH) {return;}
@@ -93,4 +95,5 @@ public class Renderer {
 		
 		drawPixels(image.getP(), newX, newW, newY, newH, offX, tileX*image.getTileW(), offY, tileY*image.getTileH(), image.getW());
 	}
+
 }

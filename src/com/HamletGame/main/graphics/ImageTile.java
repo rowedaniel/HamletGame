@@ -26,4 +26,12 @@ public class ImageTile extends Image{
 		this.tileH = tileH;
 	}
 	
+	public int getTileNoX() {
+		return getW()/getTileW();
+	}
+	
+	public int getTileNoY() {
+		return getH()/getTileH();
+	}
+	
 }

@@ -100,7 +100,7 @@ public class Player extends GameObject{
 	
 	@Override
 	public void draw(Renderer r) {
-		r.drawImageTile(image, x, y, animationX, animationY);
+		r.drawImageTile(image, x, y, animationX, animationY, false);
 	}
 
 	@Override
