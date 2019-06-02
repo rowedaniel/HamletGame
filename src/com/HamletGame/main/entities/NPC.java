@@ -12,7 +12,7 @@ public class NPC extends GameObject{
 	private ImageTile image;
 	
 	private boolean talking = false;
-	private int dialogueNo = 1;
+	private int dialogueNo = 2; // start of dialogue
 	private double dialogueTime = 0.5f; // once every 0.5 seconds
 	private double dialogueRefresh = 0.0f; // how long we have
 	
@@ -30,6 +30,10 @@ public class NPC extends GameObject{
 	@Override
 	public void update(long delta) {
 		
+		updateDialogue(delta);
+	}
+	
+	public void updateDialogue(long delta) {
 		if(dialogueRefresh > 0.0f) {
 			dialogueRefresh -= ((double)delta/1000.0);
 		}
@@ -66,7 +70,7 @@ public class NPC extends GameObject{
 				box.setActive(false);
 				
 				// end conversation condition
-				if(dialogueNo > 2) {
+				if(dialogueNo > 3) {
 					dialogueNo = 2;
 					talking = false;
 					Player p = (Player)o;
@@ -78,6 +82,7 @@ public class NPC extends GameObject{
 				if(o.id==ID.Player) {
 					Player p = (Player)o;
 					p.setCanMove(false);
+					p.setHasTalkedToGertrude(true);
 				}
 			}
 			dialogueRefresh = dialogueTime;

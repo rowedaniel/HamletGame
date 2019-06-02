@@ -46,10 +46,11 @@ public class Game extends Canvas implements Runnable{
 			handler.addObject(new Tile(x*32+64, 32*10, 2, "/com/HamletGame/main/graphics/WallBridge.png", ID.GenericTile));
 			
 			// WE WANT CURTAINS ON THE RIGHT
-			/* // right walls
-			handler.addObject(new Tile(32*11, x*32+64, 3, "/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-			handler.addObject(new Tile(32*10, x*32+64, 3, "/com/HamletGame/main/graphics/WallBridge.png", ID.GenericTile));
-			*/
+			 // right walls
+			handler.addObject(new Tile(32*11, x*32+64, 3, "/images/curtainTop.png", ID.GenericTile));
+			if(x*32+64 != 192) { // all but the one space
+				handler.addObject(new Tile(32*10, x*32+64, 3, "/images/curtainBase.png", ID.GenericTile));
+			}
 			for(int y = 0; y < 8; y++) {
 				handler.addObject(new Tile(x*32+64, y*32+64, (x+y)%2, "/com/HamletGame/main/graphics/Floor.png", ID.GenericTile));
 			}
@@ -79,7 +80,7 @@ public class Game extends Canvas implements Runnable{
 		// TODO: ADD CURTAINS
 		
 		// Example animated tile. One of the curtain tiles should be this.
-		handler.addObject(new AnimatedTile(256+64, 192, 1,"/images/TileAnimationTest.png", ID.PoloniusTile));
+		handler.addObject(new AnimatedTile(256+64, 192, 3,"/images/curtainBaseAnimated.png", this, ID.PoloniusTile));
 		
 
 		handler.addObject(new NPC(200,220,this,ID.Gertrue));

@@ -21,6 +21,11 @@ public class Player extends GameObject{
 	private double animationSpeed = 8.0f; //  fps
 	private double animationFactor = 1.0f;
 	
+	
+	
+	// plot stuff
+	private boolean talkedToGertrude = false;
+	
 	public Player(int x, int y, Game game, ID id) {
 		super(x, y, id);
 		this.game = game;
@@ -154,6 +159,12 @@ public class Player extends GameObject{
 		this.canMove = canMove;
 	}
 	
+	public boolean hasTalkedToGertrude() {
+		return talkedToGertrude;
+	}
 	
+	public void setHasTalkedToGertrude(boolean state) {
+		talkedToGertrude = state;
+	}
 	
 }
