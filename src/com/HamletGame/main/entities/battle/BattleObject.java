@@ -11,20 +11,23 @@ public class BattleObject extends GameObject{
 	protected Game game;
 	protected BattleScreen battleScreen;
 	
-	private ImageTile image;
-	private Healthbar healthbar;
+	protected ImageTile image;
+	protected Healthbar healthbar;
 	
-	private int animationX;
-	private int animationY;
+	protected int animationX;
+	protected int animationY;
+	protected double animationTime = 0.0f;
+	protected double animationSpeed = 8.0f; //  fps
+	protected double animationFactor = 1.0f;
 
-	private boolean canDoAction;
+	protected boolean canDoAction;
 	
-	private int hp;
-	private int maxhp;
-	private int attack;
-	private int attackBase;
-	private int defense;
-	private int defenseBase;
+	protected int hp;
+	protected int maxhp;
+	protected int attack;
+	protected int attackBase;
+	protected int defense;
+	protected int defenseBase;
 	
 	public BattleObject(int x, int y, String imagesrc, boolean canDoAction, Game game, ID id) {
 		super(x, y, id);
@@ -48,20 +51,42 @@ public class BattleObject extends GameObject{
 
 	@Override
 	public void update(long delta) {
-		healthbar.setValue(hp, maxhp);
+		if(!battleScreen.isActive()) { return; }
+		updateanimation(delta);
+	}
+	
+	public void updateanimation(long delta) {
+		// update animation
+		animationX = (int)animationTime;
+		animationTime += ((double)delta*animationFactor*animationSpeed/1000.0);
+		if(animationTime >= image.getTileNoX()) {
+			animationTime = 0;
+			setAnimationState(0);
+		}
 	}
 
 	@Override
 	public void draw(Renderer r) {
+		if(!battleScreen.isActive()) { return; }
 		r.drawImageTile(image, x+battleScreen.getX(), y+battleScreen.getY(), animationX, animationY, true);
 	}
 
 	@Override
 	public void updateInput(int key, boolean state) {
-		// TODO Auto-generated method stub
+		if(!battleScreen.isActive()) { return; }
+	}
+
+	
+	private void setAnimationState(int state) {
+		if(state == 0) {
+			animationY = 0;
+		} else if(state<=4){
+			animationY = state;
+		}
 	}
 	
 	public void attack(BattleObject o) {
+		setAnimationState(1);
 		int a = Math.max(0, attack + (int)(Math.random()*20-10));
 		o.damage(a);
 		// attacking lowers defense?
@@ -69,23 +94,29 @@ public class BattleObject extends GameObject{
 	}
 	
 	public void heal(BattleObject o) {
+		setAnimationState(2);
 		hp += (int)(Math.random()*this.maxhp/2);
 	}
 	
 	public void contemplate(BattleObject o) {
+		setAnimationState(3);
 		// I like the idea of contemplate doing nothing
 	}
 	
 	public void defend(BattleObject o) {
+		setAnimationState(4);
 		defense += (int)(Math.random()*10);
 	}
 
 	@Override
 	public void interact(GameObject o) {
+		if(!battleScreen.isActive()) { return; }
 	}
 	
 	
 	public void damage(int power) {
+		if(!battleScreen.isActive()) { return; }
 		hp += Math.min(0, defense-power);
+		healthbar.setValue(hp, maxhp);
 	}
 }

@@ -78,6 +78,14 @@ public class Overlay extends GameObject{
 			} else {
 				yvel = 0;
 			}
+			if(Math.abs(x-inactiveX) < speed/60) {
+				x = inactiveX;
+				xvel = 0;
+			}
+			if(Math.abs(y-inactiveY) < speed/60) {
+				y = inactiveY;
+				yvel = 0;
+			}
 		}
 	}
 	

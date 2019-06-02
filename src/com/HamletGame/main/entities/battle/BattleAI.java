@@ -7,7 +7,14 @@ public class BattleAI extends BattleObject{
 
 	public BattleAI(int x, int y, String imagesrc, boolean canDoAction, Game game, ID id) {
 		super(x, y, imagesrc, canDoAction, game, id);
-		// TODO Auto-generated constructor stub
 	}
-
+	
+	@Override
+	public void update(long delta) {
+		super.update(delta);
+		if(hp<=0) {
+			System.out.println("ded");
+			battleScreen.setActive(false);
+		}
+	}
 }

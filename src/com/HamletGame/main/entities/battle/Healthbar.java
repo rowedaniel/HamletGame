@@ -23,7 +23,7 @@ public class Healthbar extends GameObject{
 	}
 
 	@Override
-	public void update(long delta) {		
+	public void update(long delta) {	
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class Healthbar extends GameObject{
 	}
 	
 	public void setValue(int value, int maxvalue) {
-		animationY = (maxvalue-value)*image.getTileNoY()/maxvalue;
+		animationY = (maxvalue-value)*(image.getTileNoY()-1)/maxvalue;
 	}
 	
 }

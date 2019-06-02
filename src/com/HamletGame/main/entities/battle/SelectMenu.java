@@ -35,7 +35,6 @@ public class SelectMenu extends GameObject{
 
 	@Override
 	public void updateInput(int key, boolean state) {
-		System.out.println("hi");
 		if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) { animationY = 1;}
 		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) { animationY = 0;}
 		if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) { animationX = 1;}
