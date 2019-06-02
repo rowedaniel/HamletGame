@@ -7,7 +7,8 @@ import com.HamletGame.main.entities.NPC;
 import com.HamletGame.main.entities.Player;
 import com.HamletGame.main.entities.TextBox;
 import com.HamletGame.main.entities.Tile;
-import com.HamletGame.main.entities.battle.BattleObject;
+import com.HamletGame.main.entities.battle.BattleAI;
+import com.HamletGame.main.entities.battle.BattlePlayer;
 import com.HamletGame.main.entities.battle.BattleScreen;
 
 
@@ -90,8 +91,8 @@ public class Game extends Canvas implements Runnable{
 		// screen overlay stuff
 		handler.addObject(new TextBox(ID.TextBox));
 		handler.addObject(new BattleScreen(ID.BattleScreen));
-		handler.addObject(new BattleObject(170, 80, "/images/player.png", true, this, ID.BattlePlayer));
-		handler.addObject(new BattleObject(20, 20, "/images/player.png", true, this, ID.BattlePolonius));
+		handler.addObject(new BattlePlayer(170, 80, this, ID.BattlePlayer));
+		handler.addObject(new BattleAI(20, 20, "/images/player.png", true, this, ID.BattlePolonius));
 
 		window = new Window(this);
 		renderer = new Renderer(this);

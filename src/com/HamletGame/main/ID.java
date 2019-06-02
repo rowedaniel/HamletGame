@@ -11,5 +11,6 @@ public enum ID {
 	BattleScreen(),
 	BattlePlayer(),
 	BattlePolonius(),
-	GenericHealthbar();
+	GenericHealthbar(),
+	GenericSelectMenu;
 }

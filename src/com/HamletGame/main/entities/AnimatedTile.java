@@ -91,7 +91,6 @@ public class AnimatedTile extends Tile{
 				if(dialogueNo == 1) {
 					BattleScreen battleScreen = (BattleScreen)game.getHandler().getObjectByID(ID.BattleScreen);
 					battleScreen.setActive(true);
-					System.out.println("hi");
 					talking = false;
 				} else if(dialogueNo > 1) {
 					if(o.id==ID.Player) {

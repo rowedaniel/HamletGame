@@ -8,8 +8,8 @@ import com.HamletGame.main.graphics.ImageTile;
 
 public class BattleObject extends GameObject{
 	
-	private Game game;
-	private BattleScreen battleScreen;
+	protected Game game;
+	protected BattleScreen battleScreen;
 	
 	private ImageTile image;
 	private Healthbar healthbar;
@@ -21,7 +21,9 @@ public class BattleObject extends GameObject{
 	
 	private int hp;
 	private int maxhp;
+	private int attack;
 	private int attackBase;
+	private int defense;
 	private int defenseBase;
 	
 	public BattleObject(int x, int y, String imagesrc, boolean canDoAction, Game game, ID id) {
@@ -36,10 +38,12 @@ public class BattleObject extends GameObject{
 		healthbar = new Healthbar(x+16, y+64, battleScreen, ID.GenericHealthbar);
 		game.getHandler().addObject(healthbar);
 		
-		maxhp = 10;
+		maxhp = 100;
 		hp = maxhp;
-		attackBase = 1;
-		defenseBase = 1;
+		attackBase = 10;
+		attack = attackBase;
+		defenseBase = 10;
+		defense = defenseBase;
 	}
 
 	@Override
@@ -58,11 +62,30 @@ public class BattleObject extends GameObject{
 	}
 	
 	public void attack(BattleObject o) {
-		
+		int a = Math.max(0, attack + (int)(Math.random()*20-10));
+		o.damage(a);
+		// attacking lowers defense?
+		defense -= a;
+	}
+	
+	public void heal(BattleObject o) {
+		hp += (int)(Math.random()*this.maxhp/2);
+	}
+	
+	public void contemplate(BattleObject o) {
+		// I like the idea of contemplate doing nothing
+	}
+	
+	public void defend(BattleObject o) {
+		defense += (int)(Math.random()*10);
 	}
 
 	@Override
 	public void interact(GameObject o) {
 	}
 	
+	
+	public void damage(int power) {
+		hp += Math.min(0, defense-power);
+	}
 }

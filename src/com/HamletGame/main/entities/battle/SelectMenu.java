@@ -5,7 +5,7 @@ import com.HamletGame.main.Renderer;
 import com.HamletGame.main.entities.GameObject;
 import com.HamletGame.main.graphics.ImageTile;
 
-public class Healthbar extends GameObject{
+public class SelectMenu extends GameObject{
 	
 	private BattleScreen battleScreen;
 	
@@ -14,12 +14,12 @@ public class Healthbar extends GameObject{
 	private int animationX;
 	private int animationY;
 	
-	public Healthbar(int x, int y, BattleScreen battleScreen, ID id) {
+	public SelectMenu(int x, int y, BattleScreen battleScreen, ID id) {
 		super(x, y, id);
 		this.battleScreen = battleScreen;
 		animationX = 0;
 		animationY = 0;
-		image = new ImageTile("/images/healthbar.png", 32, 4);
+		image = new ImageTile("/images/selectmenu.png", 128, 32);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class Healthbar extends GameObject{
 	}
 	
 	public void setValue(int value, int maxvalue) {
-		animationY = (maxvalue-value)*image.getTileNoY()/maxvalue;
+		animationY = value;
 	}
 	
 }
