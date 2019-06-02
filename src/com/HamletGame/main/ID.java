@@ -5,5 +5,7 @@ public enum ID {
 	Player(),
 	Enemy(),
 	GenericTile(),
-	TextBox();
+	TextBox(),
+	PoloniusTile(),
+	Gertrue();
 }

@@ -28,4 +28,9 @@ public class Tile extends GameObject{
 	
 	@Override
 	public void updateInput(int key, boolean state) {}
+
+	@Override
+	public void interact(GameObject o) {
+		System.out.println("I'm a tile!");
+	}
 }

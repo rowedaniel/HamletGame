@@ -26,6 +26,10 @@ public class Handler {
 		}
 	}
 	
+	public LinkedList<GameObject> getEntities() {
+		return entities;
+	}
+	
 	public GameObject getObjectByID(ID id) {
 		for(int i = 0; i < entities.size(); i++) {
 			GameObject o = entities.get(i);

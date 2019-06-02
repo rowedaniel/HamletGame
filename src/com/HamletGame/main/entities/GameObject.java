@@ -11,6 +11,7 @@ public abstract class GameObject {
 	protected int x, y;
 	protected double extraX, extraY;
 	protected int xvel, yvel;
+	protected boolean interactable = false;
 	
 	protected Image image;
 	
@@ -32,6 +33,8 @@ public abstract class GameObject {
 	public abstract void draw(Renderer r);
 	
 	public abstract void updateInput(int key, boolean state);
+	
+	public abstract void interact(GameObject o);
 	
 	public void setX(int x) {
 		this.x = x;

@@ -5,10 +5,10 @@ import com.HamletGame.main.ID;
 public class AnimatedTile extends Tile{
 
 	private double idleTime = 0.0f;
-	private double reactTime = 10;
+	private double reactTime = 100; // 100 seconds
 	private boolean animate;
 	private double animationTime = 0.0f;
-	private double animationSpeed = 50.0f; // 1/10 fps
+	private double animationSpeed = 5.0f; // 1/10 fps
 	private double animationFactor = 1.0f;
 	
 	public AnimatedTile(int x, int y, int r, String imgpath, ID id) {

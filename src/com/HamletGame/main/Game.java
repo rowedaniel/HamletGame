@@ -3,6 +3,7 @@ package com.HamletGame.main;
 import java.awt.Canvas;
 
 import com.HamletGame.main.entities.AnimatedTile;
+import com.HamletGame.main.entities.NPC;
 import com.HamletGame.main.entities.Player;
 import com.HamletGame.main.entities.TextBox;
 import com.HamletGame.main.entities.Tile;
@@ -76,12 +77,14 @@ public class Game extends Canvas implements Runnable{
 		// TODO: ADD CURTAINS
 		
 		// Example animated tile. One of the curtain tiles should be this.
-		//handler.addObject(new AnimatedTile(96,96,3,"/images/TileAnimationTest.png", ID.GenericTile));
+		//handler.addObject(new AnimatedTile(96,96,3,"/images/TileAnimationTest.png", ID.PoloniusTile));
 		
 
-		
+		handler.addObject(new NPC(200,220,this,ID.Gertrue));
 		handler.addObject(new Player(194,194,this,ID.Player));
 		
+		
+		// screen overlay stuff
 		handler.addObject(new TextBox(ID.TextBox));
 
 		window = new Window(this);

@@ -29,7 +29,7 @@ public class TextBox extends GameObject{
 		animationY = 0;
 		active = false;
 	}
-	
+
 	@Override
 	public void update(long delta) {
 		
@@ -93,4 +93,25 @@ public class TextBox extends GameObject{
 	public void updateInput(int key, boolean state) {		
 	}
 
+	@Override
+	public void interact(GameObject o) {
+	}
+	
+	
+
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	public void setText(int state) {
+		if(0 <= state && state < image.getTileNoY()) {
+			animationY = state;
+			this.active = true;
+		}
+	}
 }
