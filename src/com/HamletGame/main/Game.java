@@ -7,6 +7,8 @@ import com.HamletGame.main.entities.NPC;
 import com.HamletGame.main.entities.Player;
 import com.HamletGame.main.entities.TextBox;
 import com.HamletGame.main.entities.Tile;
+import com.HamletGame.main.entities.battle.BattleObject;
+import com.HamletGame.main.entities.battle.BattleScreen;
 
 
 public class Game extends Canvas implements Runnable{
@@ -77,7 +79,7 @@ public class Game extends Canvas implements Runnable{
 		// TODO: ADD CURTAINS
 		
 		// Example animated tile. One of the curtain tiles should be this.
-		//handler.addObject(new AnimatedTile(96,96,3,"/images/TileAnimationTest.png", ID.PoloniusTile));
+		handler.addObject(new AnimatedTile(256+64, 192, 1,"/images/TileAnimationTest.png", ID.PoloniusTile));
 		
 
 		handler.addObject(new NPC(200,220,this,ID.Gertrue));
@@ -86,6 +88,9 @@ public class Game extends Canvas implements Runnable{
 		
 		// screen overlay stuff
 		handler.addObject(new TextBox(ID.TextBox));
+		handler.addObject(new BattleScreen(ID.BattleScreen));
+		handler.addObject(new BattleObject(170, 80, "/images/player.png", true, this, ID.BattlePlayer));
+		handler.addObject(new BattleObject(20, 20, "/images/player.png", true, this, ID.BattlePolonius));
 
 		window = new Window(this);
 		renderer = new Renderer(this);
