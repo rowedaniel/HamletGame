@@ -24,6 +24,9 @@ public class KeyInput implements KeyListener{
 			if(o.getID() == ID.Player) {
 				o.updateInput(key, true);
 			}
+			if(o.getID() == ID.BattlePlayer) {
+				o.updateInput(key, true);
+			}
 		}
 	}
 	
@@ -35,6 +38,9 @@ public class KeyInput implements KeyListener{
 			GameObject o = game.getHandler().entities.get(i);
 			
 			if(o.getID() == ID.Player) {
+				o.updateInput(key, false);
+			}
+			if(o.getID() == ID.BattlePlayer) {
 				o.updateInput(key, false);
 			}
 		}

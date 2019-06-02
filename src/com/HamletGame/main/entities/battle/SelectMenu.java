@@ -1,5 +1,7 @@
 package com.HamletGame.main.entities.battle;
 
+import java.awt.event.KeyEvent;
+
 import com.HamletGame.main.ID;
 import com.HamletGame.main.Renderer;
 import com.HamletGame.main.entities.GameObject;
@@ -33,14 +35,16 @@ public class SelectMenu extends GameObject{
 
 	@Override
 	public void updateInput(int key, boolean state) {
+		System.out.println("hi");
+		if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) { animationY = 1;}
+		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) { animationY = 0;}
+		if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) { animationX = 1;}
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) { animationX = 0;}
+		if(key == KeyEvent.VK_SPACE) {}
 	}
 
 	@Override
 	public void interact(GameObject o) {
-	}
-	
-	public void setValue(int value, int maxvalue) {
-		animationY = value;
 	}
 	
 }

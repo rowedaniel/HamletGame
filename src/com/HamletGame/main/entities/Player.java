@@ -139,9 +139,9 @@ public class Player extends GameObject{
 	@Override
 	public void updateInput(int key, boolean state) {
 		if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) { DOWN=state; }
-		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) { UP=state;; }
-		if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) { RIGHT=state;; }
-		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) { LEFT=state;; }
+		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) { UP=state; }
+		if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) { RIGHT=state; }
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) { LEFT=state; }
 		if(key == KeyEvent.VK_SPACE) { examine(); }
 	}
 
