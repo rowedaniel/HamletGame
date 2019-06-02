@@ -9,7 +9,7 @@ public class TextBox extends GameObject{
 	private int animationX;
 	private int animationY;
 	
-	private double speed = 1.0f;
+	private double speed = 300.0f;
 	
 	private boolean moving;
 	private boolean active;
@@ -71,10 +71,10 @@ public class TextBox extends GameObject{
 	}
 	
 	public void updatepos(long delta) {
-		x += xvel*(delta/1000000000*speed); // 10**-9 * xvel px/s
-		y += yvel*(delta/1000000000/speed);
-		extraX += xvel*(delta/1000000000.0*speed) - xvel*delta/1000000000*speed;
-		extraY += yvel*(delta/1000000000.0*speed) - yvel*delta/1000000000*speed;
+		x += xvel*(delta/1000*speed); // 10**-9 * xvel px/s
+		y += yvel*(delta/1000/speed);
+		extraX += xvel*(delta/1000.0*speed) - xvel*delta/1000*speed;
+		extraY += yvel*(delta/1000.0*speed) - yvel*delta/1000*speed;
 		x += (int)extraX;
 		y += (int)extraY;
 		extraX -= (int)extraX;

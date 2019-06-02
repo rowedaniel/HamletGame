@@ -9,12 +9,12 @@ import com.HamletGame.main.graphics.ImageTile;
 public class Player extends GameObject{
 
 	private boolean LEFT, RIGHT, UP, DOWN;
-	private double walkSpeed = 0.2f; // px/s
+	private double walkSpeed = 40.0f; // px/s
 	private ImageTile image;
 	private int animationX;
 	private int animationY;
 	private double animationTime = 0.0f;
-	private double animationSpeed = 0.05f; // 1/10 fps
+	private double animationSpeed = 5.0f; //  fps
 	private double animationFactor = 1.0f;
 	
 	public Player(int x, int y, ID id) {
@@ -85,10 +85,10 @@ public class Player extends GameObject{
 	}
 
 	public void updatepos(long delta) {
-		x += xvel*(delta/1000000000*walkSpeed); // 10**-9 * xvel px/s
-		y += yvel*(delta/1000000000/walkSpeed);
-		extraX += xvel*(delta/1000000000.0*walkSpeed) - xvel*delta/1000000000*walkSpeed;
-		extraY += yvel*(delta/1000000000.0*walkSpeed) - yvel*delta/1000000000*walkSpeed;
+		x += xvel*(delta/1000*walkSpeed); // 10**-9 * xvel px/s
+		y += yvel*(delta/1000/walkSpeed);
+		extraX += xvel*(delta/1000.0*walkSpeed) - xvel*delta/1000*walkSpeed;
+		extraY += yvel*(delta/1000.0*walkSpeed) - yvel*delta/1000*walkSpeed;
 		x += (int)extraX;
 		y += (int)extraY;
 		extraX -= (int)extraX;
@@ -102,7 +102,7 @@ public class Player extends GameObject{
 	public void updateanimation(long delta) {
 		// update animation
 		animationX = (int)animationTime;
-		animationTime += ((double)delta*animationFactor*animationSpeed/1000000000.0);
+		animationTime += ((double)delta*animationFactor*animationSpeed/1000.0);
 		animationTime %= 8;
 	}
 	

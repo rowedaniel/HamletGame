@@ -103,13 +103,24 @@ public class Game extends Canvas implements Runnable{
 	public void run()
 	{
 		long prevTime = SystemTimer.getTime();
+		int frames = 0;
+		long time = 0;
 		
 		while(running)
 		{
-			long delta = (prevTime = SystemTimer.getTime() - prevTime);
+			long delta = (SystemTimer.getTime() - prevTime);
+			prevTime = SystemTimer.getTime();
 			
 			logic(delta);
 			render(delta);
+			
+			frames += 1;
+			time += delta;
+			if(frames>=60) {
+				System.out.println(frames*1000/time);
+				time = 0;
+				frames = 0;
+			}
 			
 			try {
 				Thread.sleep(Math.max(0,prevTime + SystemTimer.getTargetTime() - SystemTimer.getTime()));

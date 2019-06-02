@@ -8,7 +8,7 @@ public class AnimatedTile extends Tile{
 	private double reactTime = 10;
 	private boolean animate;
 	private double animationTime = 0.0f;
-	private double animationSpeed = 0.05f; // 1/10 fps
+	private double animationSpeed = 50.0f; // 1/10 fps
 	private double animationFactor = 1.0f;
 	
 	public AnimatedTile(int x, int y, int r, String imgpath, ID id) {
@@ -26,14 +26,14 @@ public class AnimatedTile extends Tile{
 		if(animate) {
 			// update animation
 			animationX = (int)animationTime;
-			animationTime += ((double)delta*animationFactor*animationSpeed/1000000000.0);
+			animationTime += ((double)delta*animationFactor*animationSpeed/1000.0);
 			if(animationX >= image.getTileNoX()) {
 				animationX = 0;
 				animationTime = 0.0f;
 				setAnimationState(0);
 			}
 		} else {
-			idleTime += ((double)delta*animationFactor*animationSpeed/1000000000.0);
+			idleTime += ((double)delta*animationFactor*animationSpeed/1000.0);
 		}
 	}
 	
