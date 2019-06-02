@@ -124,7 +124,7 @@ public class Game extends Canvas implements Runnable{
 			frames += 1;
 			time += delta;
 			if(frames>=60) {
-				System.out.println(frames*1000/time);
+				System.out.println("fps: "+frames*1000/time);
 				time = 0;
 				frames = 0;
 			}
