@@ -27,7 +27,7 @@ public class TextBox extends GameObject{
 		image = new ImageTile("/images/TextBox.png", 128, 32);
 		animationX = 0;
 		animationY = 0;
-		active = true;
+		active = false;
 	}
 	
 	@Override

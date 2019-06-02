@@ -2,23 +2,26 @@ package com.HamletGame.main.entities;
 
 import java.awt.event.KeyEvent;
 
+import com.HamletGame.main.Game;
 import com.HamletGame.main.ID;
 import com.HamletGame.main.Renderer;
 import com.HamletGame.main.graphics.ImageTile;
 
 public class Player extends GameObject{
 
+	private Game game;
 	private boolean LEFT, RIGHT, UP, DOWN;
 	private double walkSpeed = 40.0f; // px/s
 	private ImageTile image;
 	private int animationX;
 	private int animationY;
 	private double animationTime = 0.0f;
-	private double animationSpeed = 5.0f; //  fps
+	private double animationSpeed = 8.0f; //  fps
 	private double animationFactor = 1.0f;
 	
-	public Player(int x, int y, ID id) {
+	public Player(int x, int y, Game game, ID id) {
 		super(x, y, id);
+		this.game = game;
 		image = new ImageTile("/com/HamletGame/main/graphics/Player.png", 32, 32);
 		animationX = 0;
 		animationY = 0;
