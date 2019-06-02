@@ -9,9 +9,8 @@ public class TextBox extends GameObject{
 	private int animationX;
 	private int animationY;
 	
-	private double speed = 300.0f;
+	private double speed = 600.0f;
 	
-	private boolean moving;
 	private boolean active;
 	
 	private static int activeX = 64;

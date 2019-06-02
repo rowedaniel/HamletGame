@@ -11,8 +11,9 @@ public class NPC extends GameObject{
 	
 	private ImageTile image;
 	
+	private boolean talking = false;
 	private int dialogueNo = 1;
-	private double dialogueTime = 1.0f; // once every 1 seconds
+	private double dialogueTime = 0.5f; // once every 0.5 seconds
 	private double dialogueRefresh = 0.0f; // how long we have
 	
 	private int animationX;
@@ -33,6 +34,17 @@ public class NPC extends GameObject{
 			dialogueRefresh -= ((double)delta/1000.0);
 		}
 		
+		
+		if(talking) {
+			TextBox box = (TextBox)game.getHandler().getObjectByID(ID.TextBox);
+			if(dialogueRefresh <= 0.0f) {
+				if(!box.isActive()) {
+					box.setText(dialogueNo);
+					dialogueNo ++;
+					dialogueRefresh = dialogueTime;
+				}
+			}
+		}
 	}
 
 	@Override
@@ -48,18 +60,27 @@ public class NPC extends GameObject{
 
 	@Override
 	public void interact(GameObject o) {
-		TextBox box = (TextBox)game.getHandler().getObjectByID(ID.TextBox);
 		if(dialogueRefresh <= 0.0f) {
-			System.out.println("yeeater");
-			if(!box.isActive()) {
-				System.out.println("hello");
-				box.setText(dialogueNo);
-				dialogueNo ++;
-				dialogueRefresh = dialogueTime;
-			} else {
-				System.out.println(box.isActive());
+			TextBox box = (TextBox)game.getHandler().getObjectByID(ID.TextBox);
+			if(talking && box.isActive()) {
 				box.setActive(false);
+				
+				// end conversation condition
+				if(dialogueNo > 2) {
+					dialogueNo = 2;
+					talking = false;
+					Player p = (Player)o;
+					p.setCanMove(true);
+				}
+				
+			} else if(!talking) {
+				talking = true;
+				if(o.id==ID.Player) {
+					Player p = (Player)o;
+					p.setCanMove(false);
+				}
 			}
+			dialogueRefresh = dialogueTime;
 		}
 	}
 }

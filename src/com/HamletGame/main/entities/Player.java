@@ -32,44 +32,44 @@ public class Player extends GameObject{
 	@Override
 	public void update(long delta) {
 		
-		updatepos(delta);
+
+		if(canMove) {
+			updatepos(delta);
+		}
 		
 		updateanimation(delta);
-		
-		if(canMove) {
-			if(LEFT) {
-				setAnimationState(2);
-				setVelX(-1);
-			} else if(RIGHT) {
-				setAnimationState(4);
-				setVelX(1);
-			} else {
-				setVelX(0);
-			}
-			if(UP) {
-				setAnimationState(1);
-				setVelY(-1);
-			} else if(DOWN) {
-				setAnimationState(3);
-				setVelY(1);
-			} else {
-				setVelY(0);
-			}
-			if(RIGHT && DOWN) {
-				setAnimationState(5);
-	        }
-	        if(LEFT && DOWN) {
-	        	setAnimationState(6);
-	        }
-	        if(RIGHT && UP) {
-	        	setAnimationState(7);
-	        }
-	        if(LEFT && UP) {
-	        	setAnimationState(8);
-	        }
-			if(!(LEFT || RIGHT || UP || DOWN)) {
-				setAnimationState(0);
-			}
+		if(LEFT) {
+			setAnimationState(2);
+			setVelX(-1);
+		} else if(RIGHT) {
+			setAnimationState(4);
+			setVelX(1);
+		} else {
+			setVelX(0);
+		}
+		if(UP) {
+			setAnimationState(1);
+			setVelY(-1);
+		} else if(DOWN) {
+			setAnimationState(3);
+			setVelY(1);
+		} else {
+			setVelY(0);
+		}
+		if(RIGHT && DOWN) {
+			setAnimationState(5);
+        }
+        if(LEFT && DOWN) {
+        	setAnimationState(6);
+        }
+        if(RIGHT && UP) {
+        	setAnimationState(7);
+        }
+        if(LEFT && UP) {
+        	setAnimationState(8);
+        }
+		if(!(LEFT || RIGHT || UP || DOWN)) {
+			setAnimationState(0);
 		}
 	}
 	
@@ -145,5 +145,15 @@ public class Player extends GameObject{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public boolean isCanMove() {
+		return canMove;
+	}
+
+	public void setCanMove(boolean canMove) {
+		this.canMove = canMove;
+	}
+	
+	
 	
 }
