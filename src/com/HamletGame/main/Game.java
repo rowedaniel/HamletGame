@@ -37,45 +37,44 @@ public class Game extends Canvas implements Runnable{
 		// build room
 		for(int x = 0; x < 8; x++) {
 			// top walls
-			handler.addObject(new Tile(x*32+64, 0, 0, "/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-			handler.addObject(new Tile(x*32+64, 32, 0, "/com/HamletGame/main/graphics/WallBridge.png", ID.GenericTile));
+			handler.addObject(new Tile(x*32+64, 0, 0, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(x*32+64, 32, 0, "/images/WallBridge.png", ID.GenericTile));
 			// left walls
-			handler.addObject(new Tile(0, x*32+64, 1, "/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-			handler.addObject(new Tile(32, x*32+64, 1, "/com/HamletGame/main/graphics/WallBridge.png", ID.GenericTile));
+			handler.addObject(new Tile(0, x*32+64, 1, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(32, x*32+64, 1, "/images/WallBridge.png", ID.GenericTile));
 			// bottom walls
-			handler.addObject(new Tile(x*32+64, 32*11, 2, "/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-			handler.addObject(new Tile(x*32+64, 32*10, 2, "/com/HamletGame/main/graphics/WallBridge.png", ID.GenericTile));
+			handler.addObject(new Tile(x*32+64, 32*11, 2, "/images/Wall.png", ID.GenericTile));
+			handler.addObject(new Tile(x*32+64, 32*10, 2, "/images/WallBridge.png", ID.GenericTile));
 			
-			// WE WANT CURTAINS ON THE RIGHT
-			 // right walls
+			 // right curtains
 			handler.addObject(new Tile(32*11, x*32+64, 3, "/images/curtainTop.png", ID.GenericTile));
 			if(x*32+64 != 192) { // all but the one space
 				handler.addObject(new Tile(32*10, x*32+64, 3, "/images/curtainBase.png", ID.GenericTile));
 			}
 			for(int y = 0; y < 8; y++) {
-				handler.addObject(new Tile(x*32+64, y*32+64, (x+y)%2, "/com/HamletGame/main/graphics/Floor.png", ID.GenericTile));
+				handler.addObject(new Tile(x*32+64, y*32+64, (x+y)%2, "/images/Floor.png", ID.GenericTile));
 			}
 		}
 		// corners
-		handler.addObject(new Tile(256+96,0,0,"/com/HamletGame/main/graphics/WallCorner.png", ID.GenericTile));
-		handler.addObject(new Tile(256+64,0,0,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(256+96,32,3,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(256+64,32,0,"/com/HamletGame/main/graphics/WallBridgeCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(256+96,0,0,"/images/WallCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(256+64,0,0,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(256+96,32,3,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(256+64,32,0,"/images/WallBridgeCorner.png", ID.GenericTile));
 		
-		handler.addObject(new Tile(0,0,1,"/com/HamletGame/main/graphics/WallCorner.png", ID.GenericTile));
-		handler.addObject(new Tile(32,0,0,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(0,32,1,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(32,32,1,"/com/HamletGame/main/graphics/WallBridgeCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(0,0,1,"/images/WallCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(32,0,0,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(0,32,1,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(32,32,1,"/images/WallBridgeCorner.png", ID.GenericTile));
 
-		handler.addObject(new Tile(0,256+96,2,"/com/HamletGame/main/graphics/WallCorner.png", ID.GenericTile));
-		handler.addObject(new Tile(0,256+64,1,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(32,256+96,2,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(32,256+64,2,"/com/HamletGame/main/graphics/WallBridgeCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(0,256+96,2,"/images/WallCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(0,256+64,1,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(32,256+96,2,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(32,256+64,2,"/images/WallBridgeCorner.png", ID.GenericTile));
 		
-		handler.addObject(new Tile(256+96,256+96,3,"/com/HamletGame/main/graphics/WallCorner.png", ID.GenericTile));
-		handler.addObject(new Tile(256+64,256+96,2,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(256+96,256+64,3,"/com/HamletGame/main/graphics/Wall.png", ID.GenericTile));
-		handler.addObject(new Tile(256+64,256+64,3,"/com/HamletGame/main/graphics/WallBridgeCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(256+96,256+96,3,"/images/WallCorner.png", ID.GenericTile));
+		handler.addObject(new Tile(256+64,256+96,2,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(256+96,256+64,3,"/images/Wall.png", ID.GenericTile));
+		handler.addObject(new Tile(256+64,256+64,3,"/images/WallBridgeCorner.png", ID.GenericTile));
 		
 		
 		// TODO: ADD CURTAINS
@@ -91,8 +90,13 @@ public class Game extends Canvas implements Runnable{
 		// screen overlay stuff
 		handler.addObject(new TextBox(ID.TextBox));
 		handler.addObject(new BattleScreen(ID.BattleScreen));
-		handler.addObject(new BattlePlayer(170, 80, this, ID.BattlePlayer));
-		handler.addObject(new BattleAI(20, 20, "/images/player.png", true, this, ID.BattlePolonius));
+		
+		BattlePlayer tempP = new BattlePlayer(170, 80, this, ID.BattlePlayer);
+		BattleAI tempA = new BattleAI(20, 20, this, ID.BattlePolonius);
+		tempA.setOpponent(tempP);
+		tempP.setOpponent(tempA);
+		handler.addObject(tempP);
+		handler.addObject(tempA);
 
 		window = new Window(this);
 		renderer = new Renderer(this);

@@ -15,11 +15,12 @@ public class BattlePlayer extends BattleObject{
 		super(x, y, "/images/battlePlayer.png", true, game, id);
 		selectMenu = new SelectMenu(x-128, y+32, battleScreen, ID.GenericSelectMenu);
 		game.getHandler().addObject(selectMenu);
+		attack *= 5;
 	}
 	
 	public void attemptAction(int action) {
 		if(canDoAction) {
-			BattleObject opponent = (BattleObject)game.getHandler().getObjectByID(ID.BattlePolonius);
+			canDoAction = false;
 			if(action == 0) {
 				attack(opponent);
 			} else if(action == 1) {
@@ -35,6 +36,7 @@ public class BattlePlayer extends BattleObject{
 	@Override
 	public void updateInput(int key, boolean state) {
 		super.updateInput(key, state);
+		if(!battleScreen.isActive() || dead) { return; }
 		selectMenu.updateInput(key, state);
 		if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) { selectedMoveY = 1;}
 		if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) { selectedMoveY = 0;}

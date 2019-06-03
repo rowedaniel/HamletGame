@@ -17,7 +17,7 @@ public class BattleObject extends GameObject{
 	protected int animationX;
 	protected int animationY;
 	protected double animationTime = 0.0f;
-	protected double animationSpeed = 8.0f; //  fps
+	protected double animationSpeed = 4.0f; //  fps
 	protected double animationFactor = 1.0f;
 
 	protected boolean canDoAction;
@@ -28,6 +28,9 @@ public class BattleObject extends GameObject{
 	protected int attackBase;
 	protected int defense;
 	protected int defenseBase;
+	protected boolean dead;
+	
+	protected BattleObject opponent;
 	
 	public BattleObject(int x, int y, String imagesrc, boolean canDoAction, Game game, ID id) {
 		super(x, y, id);
@@ -48,11 +51,23 @@ public class BattleObject extends GameObject{
 		defenseBase = 10;
 		defense = defenseBase;
 	}
+	
+	public void setOpponent(BattleObject opponent) {
+		this.opponent = opponent;
+	}
 
 	@Override
 	public void update(long delta) {
 		if(!battleScreen.isActive()) { return; }
+		if(hp <= 0 && !dead) {
+			dead = true;
+			//battleScreen.setActive(false);
+			setAnimationState(5);
+		}
 		updateanimation(delta);
+		if(canDoAction) {
+			healthbar.setValue(hp, maxhp);
+		}
 	}
 	
 	public void updateanimation(long delta) {
@@ -60,6 +75,10 @@ public class BattleObject extends GameObject{
 		animationX = (int)animationTime;
 		animationTime += ((double)delta*animationFactor*animationSpeed/1000.0);
 		if(animationTime >= image.getTileNoX()) {
+			if(dead) {animationTime=image.getTileNoX()-1;return;}
+			if(animationY != 0) {
+				opponent.setCanDoAction(true);
+			}
 			animationTime = 0;
 			setAnimationState(0);
 		}
@@ -77,11 +96,13 @@ public class BattleObject extends GameObject{
 	}
 
 	
-	private void setAnimationState(int state) {
+	public void setAnimationState(int state) {
 		if(state == 0) {
 			animationY = 0;
-		} else if(state<=4){
+		} else if(state<=5){
+			animationX = 0;
 			animationY = state;
+			animationTime = 0.0f;
 		}
 	}
 	
@@ -90,12 +111,13 @@ public class BattleObject extends GameObject{
 		int a = Math.max(0, attack + (int)(Math.random()*20-10));
 		o.damage(a);
 		// attacking lowers defense?
-		defense -= a;
+		defense -= a*2/3;
 	}
 	
 	public void heal(BattleObject o) {
 		setAnimationState(2);
-		hp += (int)(Math.random()*this.maxhp/2);
+		hp = Math.min(maxhp, hp+(int)(Math.random()*this.maxhp/2));
+		healthbar.setValue(hp, maxhp);
 	}
 	
 	public void contemplate(BattleObject o) {
@@ -116,7 +138,16 @@ public class BattleObject extends GameObject{
 	
 	public void damage(int power) {
 		if(!battleScreen.isActive()) { return; }
-		hp += Math.min(0, defense-power);
-		healthbar.setValue(hp, maxhp);
+		hp = Math.max(0, hp+Math.min(0, defense-power));
 	}
+	
+	
+	
+	public boolean isCanDoAction() {
+		return canDoAction;
+	}
+
+	public void setCanDoAction(boolean canDoAction) {
+		this.canDoAction = canDoAction;
+	}	
 }
