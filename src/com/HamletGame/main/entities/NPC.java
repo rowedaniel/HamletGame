@@ -23,7 +23,7 @@ public class NPC extends GameObject{
 		super(x, y, id);
 		this.game = game;
 		// TODO: make image for Gertrude
-		image = new ImageTile("/com/HamletGame/main/graphics/Player.png", 32, 32);
+		image = new ImageTile("/images/gertrude.png", 32, 32);
 		interactable =  true;
 	}
 
@@ -70,8 +70,9 @@ public class NPC extends GameObject{
 				box.setActive(false);
 				
 				// end conversation condition
-				if(dialogueNo > 3) {
-					dialogueNo = 2;
+				if(dialogueNo > 12) {
+					animationY = 3;
+					dialogueNo = 12;
 					talking = false;
 					Player p = (Player)o;
 					p.setCanMove(true);

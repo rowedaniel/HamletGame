@@ -13,7 +13,6 @@ public class Image {
 	public Image(String path) {
 		BufferedImage img = null;
 		try {
-			System.out.println(Image.class.getResourceAsStream(path));
 			img = ImageIO.read(Image.class.getResourceAsStream(path));
 		} catch (IOException e){
 			//e.printStackTrace();

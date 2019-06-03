@@ -6,7 +6,7 @@ import com.HamletGame.main.ID;
 public class BattleAI extends BattleObject{
 
 	public BattleAI(int x, int y, Game game, ID id) {
-		super(x, y, "/images/battlePlayer.png", false, game, id);
+		super(x, y, "/images/battlePolonius.png", false, game, id);
 	}
 	
 	@Override
@@ -16,7 +16,9 @@ public class BattleAI extends BattleObject{
 		if(canDoAction) {
 			canDoAction = false;
 			int action = (int)(Math.random()*4);
-			if(action == 0) {
+			if(true) {
+				contemplate(opponent);
+			} else if(action == 0) {
 				attack(opponent);
 			} else if(action == 1) {
 				heal(opponent);
