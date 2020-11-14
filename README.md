@@ -1,20 +1,12 @@
 HamletGame
 ==============
 
-HamletGame is a game developed by Daniel Neshyba-Rowe. Copyright 2020 by Daniel Neshyba-Rowe.
+HamletGame is a demo game, written in Java, in which the user plays as Hamlet in the curtain scene of the Shakespeare play.
 
-==============  Setup  ==============
+Copyright 2020 by Daniel Neshyba-Rowe.
 
-1) 
-
-2) 
-
-
-==============  Inputs ==============   
-The inputs are as follows
-1) 
-2) 
-
+==============  Setup Notes  ==============
+Compiled under Windows. Not tested in other operating systems.   
 
 
 ============== Credits ==============   
