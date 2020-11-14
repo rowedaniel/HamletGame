@@ -1,7 +1,7 @@
 HamletGame  
 ==============  
 
-HamletGame is a demo game, written in Java, in which the user plays as Hamlet in the curtain scene of the Shakespeare play.  
+HamletGame is a demo game, written in Java, in which the user plays as Hamlet in the "curtain" scene of the Shakespeare play.  
 
 Copyright 2020 by Daniel Neshyba-Rowe.  
 
